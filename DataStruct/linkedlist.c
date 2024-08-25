@@ -94,11 +94,28 @@ int add_node(struct Node *head, int data)
      return 0;
 }
 
+struct Node *del_head_node(struct Node *head)
+{
+     struct Node *newhead = head->next;
+     struct Node *element = head;
+
+     if (newhead == NULL && element == NULL)
+          return head;
+
+     free(head);
+
+     return newhead;
+}
+
 // Delete the first node found with value
 int del_node(struct Node *head, int value)
 {
      struct Node *cur = head;
      struct Node *element = NULL;
+
+     // Can't delete head node
+     if (cur->data == value)
+          return -2;
 
      // Look for the first node with data == value
      while (cur->next != NULL && cur->next->data != value)
@@ -152,8 +169,11 @@ int main(void)
      print_list(head);
      printf("\n");
 
-     // Remove the first node with a value of 4
-     del_node(head, 4);
+     // Remove the first nodes with values of 4 and 8
+     if (del_node(head, 4) == -2)
+          head = del_head_node(head);
+     if (del_node(head, 8) == -2)
+          head = del_head_node(head);
      print_list(head);
 
      // Clean up
