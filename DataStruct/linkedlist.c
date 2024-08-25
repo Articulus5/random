@@ -99,7 +99,8 @@ struct Node *del_head_node(struct Node *head)
      struct Node *newhead = head->next;
      struct Node *element = head;
 
-     if (newhead == NULL && element == NULL)
+     // Don't modify the head node if there is no list or there is only one node
+     if (newhead == NULL || element == NULL)
           return head;
 
      free(head);
