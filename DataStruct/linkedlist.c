@@ -94,6 +94,30 @@ int add_node(struct Node *head, int data)
      return 0;
 }
 
+// Delete the first node found with value
+int del_node(struct Node *head, int value)
+{
+     struct Node *cur = head;
+     struct Node *element = NULL;
+
+     // Look for the first node with data == value
+     while (cur->next != NULL && cur->next->data != value)
+          cur = cur->next;
+
+     // If node is not found
+     if (cur->next == NULL)
+          return -1;
+     else element = cur->next;
+
+     // Update indexes
+     cur->next = cur->next->next;
+
+     // Delete node
+     free(element);
+
+     return 0;
+}
+
 struct Node *reverse_list(struct Node *head)
 {
      struct Node *prev = NULL;
@@ -125,6 +149,11 @@ int main(void)
      add_node(head, 9);
 
      // Print the list
+     print_list(head);
+     printf("\n");
+
+     // Remove the first node with a value of 4
+     del_node(head, 4);
      print_list(head);
 
      // Clean up
