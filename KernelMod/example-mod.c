@@ -228,7 +228,11 @@ static int __init example_init(void)
         return majorNumber;
     }
 
-    exampleClass = class_create(THIS_MODULE, CLASS_NAME);
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 4, 0)
+	exampleClass = class_create(THIS_MODULE, CLASS_NAME);
+#else
+	exampleClass = class_create(CLASS_NAME);
+#endif
     if (IS_ERR(exampleClass))
     {
         printk(KERN_ERR "Example: Failed to register device class.");
