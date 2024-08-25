@@ -1,0 +1,12 @@
+AddTwo/addtwo
+BitField/bitfield
+DataStruct/linkedlist
+MergeSort/mergesort
+RingBuf/ringbuf
+
+KernelMod/.*
+KernelMod/*.o
+KernelMod/Module.symvers
+KernelMod/modules.order
+KernelMod/example-mod.mod*
+KernelMod/example-mod.ko
